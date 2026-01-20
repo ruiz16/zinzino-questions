@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcards App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>ZINZINO</h1>
+            <p>INSPIRE CHANGE IN LIFE</p>
+        </header>
+
+        <main class="main-content">
+            <!-- Sección de carga de archivo -->
+            <div id="upload-section" class="upload-section">
+                <div class="upload-card">
+                    <h2>BALANCE CONCEPT</h2>
+                    <p>Pon a prueba tus conocimientos sobre nuestros productos.</p>
+                    <button id="start-btn" class="btn btn-primary btn-large">EMPEZAR TEST</button>
+                    <p class="small-text">Basado en datos oficiales de Zinzino</p>
+                </div>
+            </div>
+
+            <!-- Sección de flashcards -->
+            <div id="flashcard-section" class="flashcard-section hidden">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
+                    <span class="progress-text" id="progress-text">0 / 0</span>
+                </div>
+
+                <div class="flashcard-container">
+                    <div class="flashcard" id="flashcard">
+                        <div class="flashcard-inner" id="flashcard-inner">
+                            <div class="flashcard-front">
+                                <div class="card-content" id="card-question"></div>
+                                <div class="card-hint">Haz clic para ver la respuesta</div>
+                            </div>
+                            <div class="flashcard-back">
+                                <div class="card-content" id="card-answer"></div>
+                                <div class="card-hint">Haz clic para ver la pregunta</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="controls">
+                    <button id="prev-btn" class="btn btn-primary">Anterior</button>
+                    <button id="flip-btn" class="btn btn-secondary">Voltear</button>
+                    <button id="next-btn" class="btn btn-primary">Siguiente</button>
+                </div>
+
+                <div class="navigation-info">
+                    <span id="card-counter">Tarjeta 0 de 0</span>
+                </div>
+
+                <!-- <div class="study-stats">
+                    <div class="stat-item">
+                        <span class="stat-label">Aprendidas:</span>
+                        <span class="stat-value" id="learned-count">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Restantes:</span>
+                        <span class="stat-value" id="remaining-count">0</span>
+                    </div>
+                </div> -->
+
+                <button id="reset-btn" class="btn btn-outline">Volver a empezar</button>
+            </div>
+
+            <!-- Mensaje de error -->
+            <div id="error-message" class="error-message hidden">
+                <p id="error-text"></p>
+                <button id="error-close" class="btn btn-primary">Cerrar</button>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

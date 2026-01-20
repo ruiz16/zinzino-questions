@@ -1,0 +1,560 @@
+/* Variables CSS para colores y espaciados - Estilo Zinzino */
+:root {
+  --primary-color: #e36f1e; /* Naranja Zinzino */
+  --primary-hover: #c55a15;
+  --secondary-color: #1a1a1a; /* Negro suave */
+  --accent-color: #000000;
+  --success-color: #10b981;
+  --warning-color: #f59e0b;
+  --error-color: #ef4444;
+  --background: #ffffff; /* Fondo blanco limpio */
+  --surface: #f9f9f9; /* Gris muy claro para superficies */
+  --text-primary: #1a1a1a;
+  --text-secondary: #666666;
+  --border-color: #e5e5e5;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
+  --shadow-lg: 0 10px 25px -5px rgba(0,0,0,0.08), 0 10px 10px -5px rgba(0,0,0,0.02);
+  --border-radius: 2px; /* Bordes más rectos, estilo corporativo */
+  --transition: all 0.3s ease;
+}
+
+/* Reset y estilos base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Fuente clásica y limpia */
+  background-color: var(--background);
+  color: var(--text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  width: 100%;
+  flex: 1;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.header h1 {
+  font-size: 2.5rem;
+  font-weight: 300; /* Letra más fina y elegante */
+  color: var(--accent-color);
+  margin-bottom: 0.5rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.header p {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+
+/* Sección de carga */
+.upload-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 40vh;
+}
+
+.upload-card {
+  background: var(--surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 4rem 2rem;
+  box-shadow: var(--shadow-sm);
+  text-align: center;
+  max-width: 500px;
+  width: 100%;
+}
+
+.upload-card h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+  font-weight: 300;
+}
+
+.upload-card p {
+  color: var(--text-secondary);
+  margin-bottom: 2.5rem;
+  font-size: 1.1rem;
+}
+
+.upload-card .small-text {
+  font-size: 0.8rem;
+  margin-top: 2rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Botones */
+.btn {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: center;
+  border: none;
+  border-radius: 0; /* Botones cuadrados */
+  cursor: pointer;
+  transition: var(--transition);
+  text-decoration: none;
+  user-select: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.btn-large {
+  padding: 1.2rem 3rem;
+  font-size: 1.1rem;
+  width: 100%;
+  background-color: var(--secondary-color); /* Negro para el botón principal */
+  color: white;
+}
+
+.btn-large:hover {
+  background-color: var(--primary-color); /* Naranja al hover */
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  background: var(--secondary-color);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: var(--primary-color);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: white;
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+  background: var(--surface);
+  border-color: var(--text-primary);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+  margin-top: 2rem;
+  font-size: 0.8rem;
+}
+
+.btn-outline:hover {
+  background: var(--surface);
+  color: var(--error-color);
+  border-color: var(--error-color);
+}
+
+/* Sección de flashcards */
+.flashcard-section {
+  animation: fadeIn 0.6s ease-out;
+}
+
+.progress-bar {
+  background: var(--surface);
+  border-radius: 0;
+  height: 4px;
+  margin-bottom: 3rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-fill {
+  background: var(--primary-color);
+  height: 100%;
+  border-radius: 0;
+  transition: width 0.5s ease;
+  width: 0%;
+}
+
+.progress-text {
+  position: absolute;
+  top: 1rem;
+  right: 0;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+/* Contenedor de la tarjeta */
+.flashcard-container {
+  perspective: 1500px;
+  margin-bottom: 3rem;
+}
+
+.flashcard {
+  width: 100%;
+  max-width: 600px;
+  height: 350px;
+  margin: 0 auto;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.flashcard.flipped {
+  transform: rotateY(180deg);
+}
+
+.flashcard-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+
+.flashcard-front,
+.flashcard-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  background: var(--surface);
+  border: 1px solid var(--border-color);
+  border-radius: 2px;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem;
+  text-align: center;
+}
+
+.flashcard-front {
+  background: white;
+}
+
+.flashcard-back {
+  transform: rotateY(180deg);
+  background: var(--primary-color);
+  color: white;
+  border: none;
+}
+
+.card-content {
+  font-size: 1.5rem;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+  word-wrap: break-word;
+  max-width: 100%;
+  font-weight: 300;
+}
+
+.flashcard-back .card-content {
+  font-weight: 600; /* Más negrita para protagonismo */
+  font-size: 1.8rem; /* Letra más grande */
+  margin: auto auto;
+}
+
+.card-hint {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  opacity: 0.6;
+}
+
+.flashcard-back .card-hint {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Controles */
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.navigation-info {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+#card-counter {
+  font-weight: 400;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+}
+
+/* Estadísticas */
+.study-stats {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--border-color);
+  padding-top: 2rem;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-label {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.stat-value {
+  display: block;
+  font-size: 2rem;
+  font-weight: 300;
+  color: var(--primary-color);
+}
+
+/* Mensaje de error */
+.error-message {
+  background: #fff5f5;
+  border-left: 4px solid var(--error-color);
+  padding: 1.5rem;
+  margin: 1rem 0;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.error-message p {
+  color: var(--text-primary);
+  margin-bottom: 0;
+}
+
+#reset-btn {
+  display: block;
+  margin: 0 auto;
+}
+
+/* Utilidades */
+.hidden {
+  display: none !important;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive design */
+@media (max-width: 640px) {
+  body {
+    padding-bottom: 1rem; /* Espacio para evitar corte en móviles */
+  }
+
+  .container {
+    padding: 0.5rem 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly; /* Distribuir espacio verticalmente */
+    min-height: 100vh; /* Asegurar altura completa */
+    min-height: 100dvh; /* Para navegadores móviles modernos */
+  }
+
+  .header {
+    margin-bottom: 1rem;
+    padding: 0.5rem 0;
+    flex-shrink: 0;
+  }
+
+  .header h1 {
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+    margin-bottom: 0.2rem;
+  }
+
+  .header p {
+    font-size: 0.8rem;
+    display: none; /* Ocultar eslogan en móvil para ganar espacio */
+  }
+  
+  .main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .upload-section {
+    min-height: auto;
+    padding: 0;
+  }
+
+  .upload-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .upload-card h2 {
+    font-size: 1.5rem;
+  }
+
+  .upload-card p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .flashcard-section {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+  }
+  
+  .progress-bar {
+    margin-bottom: 1rem;
+    flex-shrink: 0;
+  }
+  
+  .flashcard-container {
+    margin-bottom: 1rem;
+    width: 100%;
+    height: 350px; /* Altura fija y segura para móvil */
+    perspective: 1000px;
+    display: block; /* Simplificar layout */
+    flex: none; /* Evitar que flexbox lo altere impredeciblemente */
+  }
+  
+  .flashcard {
+    height: 100%;
+    width: 100%;
+    position: relative;
+  }
+
+  .card-content {
+    font-size: 1.2rem;
+    padding: 0;
+    overflow-y: auto;
+    max-height: 100%;
+    display: block; /* Revertir flex innecesario */
+  }
+
+  .flashcard-back .card-content {
+    font-size: 1.5rem; /* Un poco más grande en móvil también */
+    font-weight: 600;
+  }
+  
+  .flashcard-front, 
+  .flashcard-back {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .flashcard-front, 
+  .flashcard-back {
+    padding: 1.5rem;
+  }
+  
+  .controls {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+    flex-shrink: 0;
+  }
+  
+  .navigation-info {
+    margin-bottom: 0.5rem;
+    font-size: 0.8rem;
+  }
+  
+  .btn {
+    padding: 0.8rem 1rem;
+    font-size: 0.9rem;
+    flex: 1;
+    min-width: 80px;
+  }
+
+  .btn-large {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
+  }
+  
+  .study-stats {
+    gap: 1rem;
+    padding-top: 1rem;
+    margin-bottom: 0.5rem;
+    flex-shrink: 0;
+    border-top: 1px solid var(--border-color);
+  }
+
+  .stat-label {
+    font-size: 0.7rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .stat-value {
+    font-size: 1.2rem;
+  }
+  
+  #reset-btn {
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .header h1 {
+    font-size: 1.2rem;
+  }
+
+  .flashcard-container {
+    max-height: 45vh;
+  }
+
+  .controls {
+    gap: 0.5rem;
+  }
+  
+  .btn {
+    padding: 0.6rem;
+    font-size: 0.8rem;
+  }
+}

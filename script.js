@@ -34,7 +34,7 @@ class FlashcardApp {
   
   init() {
     this.bindEvents();
-    this.loadFromSessionStorage();
+    this.loadFromLocalStorage();
   }
   
   bindEvents() {
@@ -143,7 +143,7 @@ class FlashcardApp {
       this.isFlipped = false;
       this.learnedCards.clear();
       
-      this.saveToSessionStorage();
+      this.saveToLocalStorage();
       this.showFlashcardSection();
       this.updateUI();
       
@@ -173,6 +173,7 @@ class FlashcardApp {
     if (this.isFlipped) {
       this.learnedCards.add(this.currentIndex);
       this.updateStats();
+      this.saveToLocalStorage();
     }
   }
   
@@ -182,6 +183,7 @@ class FlashcardApp {
     this.currentIndex = this.currentIndex > 0 ? this.currentIndex - 1 : this.flashcards.length - 1;
     this.isFlipped = false;
     this.updateUI();
+    this.saveToLocalStorage();
   }
   
   nextCard() {
@@ -190,6 +192,7 @@ class FlashcardApp {
     this.currentIndex = this.currentIndex < this.flashcards.length - 1 ? this.currentIndex + 1 : 0;
     this.isFlipped = false;
     this.updateUI();
+    this.saveToLocalStorage();
   }
   
   updateUI() {
@@ -221,8 +224,13 @@ class FlashcardApp {
     const learned = this.learnedCards.size;
     const remaining = this.flashcards.length - learned;
     
-    this.elements.learnedCount.textContent = learned;
-    this.elements.remainingCount.textContent = remaining;
+    if (this.elements.learnedCount) {
+      this.elements.learnedCount.textContent = learned;
+    }
+    
+    if (this.elements.remainingCount) {
+      this.elements.remainingCount.textContent = remaining;
+    }
   }
   
   handleKeyboard(event) {
@@ -269,25 +277,25 @@ class FlashcardApp {
     this.isFlipped = false;
     this.learnedCards.clear();
     
-    sessionStorage.removeItem('flashcards-data');
-    sessionStorage.removeItem('flashcards-progress');
+    localStorage.removeItem('flashcards-data');
+    localStorage.removeItem('flashcards-progress');
     
     this.showUploadSection();
   }
   
-  saveToSessionStorage() {
+  saveToLocalStorage() {
     const data = {
       flashcards: this.flashcards,
       currentIndex: this.currentIndex,
       learnedCards: Array.from(this.learnedCards)
     };
     
-    sessionStorage.setItem('flashcards-data', JSON.stringify(data));
+    localStorage.setItem('flashcards-data', JSON.stringify(data));
   }
   
-  loadFromSessionStorage() {
+  loadFromLocalStorage() {
     try {
-      const savedData = sessionStorage.getItem('flashcards-data');
+      const savedData = localStorage.getItem('flashcards-data');
       if (savedData) {
         const data = JSON.parse(savedData);
         
@@ -302,7 +310,7 @@ class FlashcardApp {
       }
     } catch (error) {
       console.warn('Error al cargar datos guardados:', error);
-      sessionStorage.removeItem('flashcards-data');
+      localStorage.removeItem('flashcards-data');
     }
   }
 }

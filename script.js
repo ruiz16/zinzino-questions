@@ -34,7 +34,7 @@ class FlashcardApp {
   
   init() {
     this.bindEvents();
-    this.loadFromLocalStorage();
+    this.loadFromSessionStorage();
   }
   
   bindEvents() {
@@ -143,11 +143,12 @@ class FlashcardApp {
       this.isFlipped = false;
       this.learnedCards.clear();
       
-      this.saveToLocalStorage();
+      this.saveToSessionStorage();
       this.showFlashcardSection();
       this.updateUI();
       
     } catch (error) {
+      console.warn('Error al procesar el archivo CSV: ' + error.message);
       this.showError('Error al procesar el archivo CSV: ' + error.message);
     }
   }
@@ -268,25 +269,25 @@ class FlashcardApp {
     this.isFlipped = false;
     this.learnedCards.clear();
     
-    localStorage.removeItem('flashcards-data');
-    localStorage.removeItem('flashcards-progress');
+    sessionStorage.removeItem('flashcards-data');
+    sessionStorage.removeItem('flashcards-progress');
     
     this.showUploadSection();
   }
   
-  saveToLocalStorage() {
+  saveToSessionStorage() {
     const data = {
       flashcards: this.flashcards,
       currentIndex: this.currentIndex,
       learnedCards: Array.from(this.learnedCards)
     };
     
-    localStorage.setItem('flashcards-data', JSON.stringify(data));
+    sessionStorage.setItem('flashcards-data', JSON.stringify(data));
   }
   
-  loadFromLocalStorage() {
+  loadFromSessionStorage() {
     try {
-      const savedData = localStorage.getItem('flashcards-data');
+      const savedData = sessionStorage.getItem('flashcards-data');
       if (savedData) {
         const data = JSON.parse(savedData);
         
@@ -301,7 +302,7 @@ class FlashcardApp {
       }
     } catch (error) {
       console.warn('Error al cargar datos guardados:', error);
-      localStorage.removeItem('flashcards-data');
+      sessionStorage.removeItem('flashcards-data');
     }
   }
 }
